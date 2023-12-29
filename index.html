@@ -1,13 +1,127 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>La multi ani, Cluj-Napoca!</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/@pqina/flip/dist/flip.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/@pqina/flip/dist/flip.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .message-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 10vw;
+      color: white;
+    }
+
+    .tick {
+      font-size: 4vw;
+      white-space: nowrap;
+      font-family: arial, sans-serif;
+    }
+
+    .tick-flip,
+    .tick-text-inline {
+      font-size: 2.5em;
+    }
+
+    .tick-label {
+      margin-top: 1em;
+      font-size: 1em;
+    }
+
+    .tick-char {
+      width: 1.5em;
+    }
+
+    .tick-text-inline {
+      display: inline-block;
+      text-align: center;
+      min-width: 1em;
+    }
+
+    .tick-text-inline+.tick-text-inline {
+      margin-left: -.325em;
+    }
+
+    .tick-group {
+      margin: 0 .5em;
+      text-align: center;
+    }
+
+    .tick-text-inline {
+      color: #595d63;
+    }
+
+    .tick-label {
+      color: #595d63;
+    }
+
+    .tick-flip-panel {
+      color: #fff;
+    }
+
+    .tick-flip-panel-text-wrapper {
+      line-height: 1.45;
+    }
+
+    .tick-flip-panel {
+      background-color: #3c3e3c;
+    }
+
+    .tick-flip {
+      border-radius: 0.12em;
+    }
+  </style>
+  <title>La multi ani, Cluj-Napoca!</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="tick" data-did-init="handleTickInit" data-credits="false">
+      <div data-repeat="true" data-layout="horizontal fit" data-transform="preset(h, m, s) -> delay">
+        <div class="tick-group">
+          <div data-key="value" data-repeat="true" data-transform="pad(00) -> split -> delay">
+            <span data-view="flip"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function handleTickInit(tick) {
+        // var counter = Tick.count.down('2024-01-01T00:08:00+02:00', { format: ['h', 'm', 's'] });
+        var counter = Tick.count.down(new Date(Date.now() + 12000).toString(), { format: ['h', 'm', 's'] });
+
+        counter.onupdate = function (value) {
+          tick.value = value;
+        };
+
+        counter.onended = function () {
+          tick.root.style.display = 'none';
+          document.querySelector('.tick-onended-message').style.display = '';
+        };
+      }
+    </script>
+
+    <div class="tick-onended-message" style="display:none">
+      <div class='message-text'>
+        <p>La mulți ani,</p>
+        <p>Cluj-Napoca!</p>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
