@@ -101,8 +101,8 @@
     </div>
     <script>
       function handleTickInit(tick) {
-        // var counter = Tick.count.down('2024-01-01T00:08:00+02:00', { format: ['h', 'm', 's'] });
-        var counter = Tick.count.down(new Date(Date.now() + 12000).toString(), { format: ['h', 'm', 's'] });
+        var counter = Tick.count.down('2024-01-01T00:08:00+02:00', { format: ['h', 'm', 's'] });
+        // var counter = Tick.count.down(new Date(Date.now() + 12000).toString(), { format: ['h', 'm', 's'] }); for demo purposes
 
         counter.onupdate = function (value) {
           tick.value = value;
